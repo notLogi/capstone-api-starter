@@ -44,11 +44,9 @@ public class ShoppingCartController
             // find database user by userId
             User user = userDao.getByUserName(userName);
             int userId = user.getId();
-            System.out.println("userID: " + userId);
             // use the shoppingCartDao to get all items in the cart and return the cart
 //            ShoppingCart test = shoppingCartDao.getByUserId(userId);
 //            System.out.println("Is it true ? " + test.contains(8));
-            if (principal == null) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
 
             return shoppingCartDao.getByUserId(userId);
         }
