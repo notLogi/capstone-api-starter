@@ -1,9 +1,7 @@
 package org.yearup.data.mysql;
 
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.yearup.data.ProductDao;
 import org.yearup.data.ShoppingCartDao;
 import org.yearup.models.Product;
 import org.yearup.models.ShoppingCart;
@@ -17,8 +15,6 @@ import java.sql.ResultSet;
 
 @Component
 public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDao {
-    private DataSource dataSource;
-
     @Autowired
     public MySqlShoppingCartDao(DataSource dataSource){
         super(dataSource);
@@ -58,5 +54,44 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
             throw new RuntimeException(e);
         }
         return cart;
+    }
+
+    @Override
+    public ShoppingCart addProduct(int userId, int productId){
+        String sql = """
+                INSERT INTO shopping_cart (user_id, product_id, quantity) VALUES (?, ?, 1)
+                ON DUPLICATE KEY UPDATE quantity = quantity + 1;
+                """;
+        try(Connection connection = getConnection();
+          PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, productId);
+            int rows = preparedStatement.executeUpdate();
+            if(rows == 0) System.out.println("No rows have been updated.");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return getByUserId(userId);
+    }
+
+    @Override
+    public void updateCart(int id, int quantity){
+
+    }
+
+    @Override
+    public void deleteCart(int id){
+        String sql = """
+                DELETE FROM shopping_cart WHERE user_id = ?;
+                """;
+        try(Connection connection = getConnection();
+          PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setInt(1, id);
+            int rows = preparedStatement.executeUpdate();
+            if(rows == 0) System.out.println("No rows have been deleted");
+            else System.out.println("Cart has been cleared!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
