@@ -48,16 +48,13 @@ public class CategoriesController
     @GetMapping("{id}")
     public Category getById(@PathVariable int id)
     {
-        var category = categoryDao.getById(id);
+        try {
+            var category = categoryDao.getById(id);
+            return category;
 
-        if (category == null) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND,
-                    "Category not found"
-            );
+        } catch (ResponseStatusException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found");
         }
-
-        return category;
     }
 
 
@@ -115,10 +112,9 @@ public class CategoriesController
         // delete the category by id
         try {
             var category = categoryDao.getById(id);
-            if(category == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             categoryDao.delete(id);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 }
