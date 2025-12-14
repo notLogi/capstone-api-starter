@@ -48,13 +48,9 @@ public class CategoriesController
     @GetMapping("{id}")
     public Category getById(@PathVariable int id)
     {
-        try {
-            var category = categoryDao.getById(id);
-            return category;
-
-        } catch (ResponseStatusException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found");
-        }
+        var category = categoryDao.getById(id);
+        if(category == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found");
+        return category;
     }
 
 
