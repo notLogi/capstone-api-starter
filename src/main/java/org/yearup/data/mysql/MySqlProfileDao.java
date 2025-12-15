@@ -1,6 +1,7 @@
 package org.yearup.data.mysql;
 
-import org.springframework.stereotype.Component;
+import  org.springframework.stereotype.Component;
+import org.yearup.models.Category;
 import org.yearup.models.Profile;
 import org.yearup.data.ProfileDao;
 
@@ -44,4 +45,72 @@ public class MySqlProfileDao extends MySqlDaoBase implements ProfileDao
         }
     }
 
+    @Override
+    public void update(int userId, Profile profile){
+        String sql = """
+                UPDATE profiles
+                SET first_name = ?, last_name = ?, phone = ?, email = ?, address = ?, city = ?, state = ?, zip = ?
+                WHERE user_id = ?;
+                """;
+        try(Connection connection = getConnection();
+          PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, profile.getFirstName());
+            preparedStatement.setString(2, profile.getLastName());
+            preparedStatement.setString(3, profile.getPhone());
+            preparedStatement.setString(4, profile.getEmail());
+            preparedStatement.setString(5, profile.getAddress());
+            preparedStatement.setString(6, profile.getCity());
+            preparedStatement.setString(7, profile.getState());
+            preparedStatement.setString(8, profile.getZip());
+            preparedStatement.setInt(9, userId);
+            int affectedRows = preparedStatement.executeUpdate();
+            if(affectedRows == 0) throw new SQLException("Updating category failed, no rows affected.");
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Profile getByUserId(int id){
+        String sql = "SELECT * FROM profiles WHERE user_id = ?";
+        try(Connection connection = getConnection();
+         PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setInt(1, id);
+            try(ResultSet resultSet = preparedStatement.executeQuery()){
+                if(resultSet.next()){
+                    return mapRow(resultSet);
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    private Profile mapRow(ResultSet row) throws SQLException
+    {
+        int userId = row.getInt("user_id");
+        String firstName = row.getString("first_name");
+        String lastName = row.getString("last_name");
+        String phone = row.getString("phone");
+        String email = row.getString("email");
+        String address = row.getString("address");
+        String city = row.getString("city");
+        String state = row.getString("state");
+        String zip = row.getString("zip");
+
+        return new Profile()
+        {{
+            setUserId(userId);
+            setFirstName(firstName);
+            setLastName(lastName);
+            setPhone(phone);
+            setEmail(email);
+            setAddress(address);
+            setCity(city);
+            setState(state);
+            setZip(zip);
+;        }};
+    }
 }
