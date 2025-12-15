@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @Component
 public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDao {
@@ -75,18 +76,31 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
     }
 
     @Override
-    public void updateCart(int id, int quantity){
+    public void updateCart(int userId, int productId, int quantity){
+        String sql = """
+                UPDATE shopping_cart SET quantity = ? WHERE product_id = ? AND user_id = ?
+                """;
+        try(Connection connection = getConnection();
+          PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setInt(1, quantity);
+            preparedStatement.setInt(2, productId);
+            preparedStatement.setInt(3,userId);
+            int rows = preparedStatement.executeUpdate();
+            if(rows == 0) throw new SQLException("Update failed, no rows affected!");
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void deleteCart(int id){
+    public void deleteCart(int userId){
         String sql = """
                 DELETE FROM shopping_cart WHERE user_id = ?;
                 """;
         try(Connection connection = getConnection();
           PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, userId);
             int rows = preparedStatement.executeUpdate();
             if(rows == 0) System.out.println("No rows have been deleted");
             else System.out.println("Cart has been cleared!");
