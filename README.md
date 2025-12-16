@@ -1,4 +1,4 @@
-Video Game Store API
+**Video Game Store API**
 The Financial Tracker allows you to keep track of your previous transactions and allows the user to add deposits and payments. Transitions are stored onto a CSV file and can be filtered by dates, vendor, and the amount of money.
 
 User stories
