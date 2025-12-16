@@ -1,52 +1,81 @@
-**Video Game Store API**
-The Financial Tracker allows you to keep track of your previous transactions and allows the user to add deposits and payments. Transitions are stored onto a CSV file and can be filtered by dates, vendor, and the amount of money.
+## Video Game Store API
+This API utilizes REST storing persistent data that involves the store's products, order summary, and the user's shopping cart.
+Owners using this API can use this to configure their database for categories and their available products. 
 
-User stories
-As a user, I want to filter out transactions by date, vendor, description, and the amount deposited/paid.
-As a user, I want to be able to add deposits, so I can keep track of spending.
-As a user, I want to be able to add payments, so I can keep track of my debt repayment.
-As a user, I want to see a list of options, so I can choose what to do on the application.
-As a user, I want to open all transactions, so I can see calculate the amount of money I have spent.
-Some features include:
-Add Deposits and Payments
 
-Users are able to record the date of the deposit/payment, the amount deposited/paid, the vendor, and description of what it was for.
-Validates the user input to ensure correct date/time formats and positive amounts of money.
-Managing ledger
+## User stories
+- As an administrator of the database, I want to be able to update, delete, and insert a category to show what game categories there are
+- As a user, I want to be able to get the products based on the information given, so I can actually see what is available.
+- As a user, I want to be able to see the latest product list, so I don't see any outdated/duplicate products that can cause me confusion
+- As a user, I want to add items to my cart, so I can check out items that I want to buy
+- As a user, I want to clear my cart so I can restart my list of what I want to buy.
+- As a user, I want to update the quantity of the product that I am buying, so I don't need to spam click + or -.
+- As a user, I want to update my profile details so it reflects my identity
+- As a user, I want to checkout my items, so I can purchase my items
+## Some features include:
 
-Allows the user to see all reports
-Displays transactions that are either payments or deposits.
-Reports
+**Read data from the database**
+- Persistent data being stored in a database using MySQL.
 
-Can filter reports by the previous or this month, previous or this year, or by vendor. Can filter reports by the previous or this month, previous or this year, or by vendor.
-Option to custom search by inputting the vendor, amount recorded, description, and the date range.
-Persistent storage
+**Changing profile details**
+- Users can change their profile details to ensure what they order can be delivered to the right address
 
-Transactions are stored in a CSV file.
-Automatically creates a CSV file if you don't have a transactions file. Sorting
-Transactions stored are automatically sorted by date for convenience.
-Setup
-Prerequisites
-IntelliJ IDEA: Ensure you have IntelliJ IDEA installed, which you can download from here.
-Java SDK: Make sure Java SDK is installed and configured in IntelliJ.
-Running the Application in IntelliJ
+**Add and removing products from the shopping cart**
+- Users can remove and add as many products as they want inside their shopping cart, which will get stored in the database.
+
+**Filtering products**
+- Users can filter out products based on their minimum and maximum price and/or category.
+
+
+## Setup
+
+
+### Prerequisites
+
+- IntelliJ IDEA: Ensure you have IntelliJ IDEA installed, which you can download from [here](https://www.jetbrains.com/idea/download/).
+- Java SDK: Make sure Java SDK is installed and configured in IntelliJ.
+
+### Running the Application in IntelliJ
+
 Follow these steps to get your application running within IntelliJ IDEA:
 
-Open IntelliJ IDEA.
-Select "Open" and navigate to the directory where you cloned or downloaded the project.
-After the project opens, wait for IntelliJ to index the files and set up the project.
-Find the main class with the public static void main(String[] args) method.
-Right-click on the file and select 'Run 'FinancialTracker.main()'' to start the application.
-Technologies Used
-Java SDK 17
-IntelliJ IDEA
-Demo(Left to right, top to bottom)
-image image image image image image image
-An Interesting Part of My Code
-One of the interesting parts of my code is how I refactored the helper methods for the reportMenu and LedgerMenu. I looked up at how to pass a condition through the parameter and it taught me about Predicate. Predicate is a functional interface that allows this. I was able to reduce a lot of repetition with this trick.
-Double vs double, where Double is an object. Used to check if the double was a valid number.
-Resources
-https://www.geeksforgeeks.org/java/java-8-predicate-with-examples/
-https://www.bezkoder.com/java-sort-arraylist-of-objects/
-Contributors:
-Roger Su
+1. Open IntelliJ IDEA.
+2. Select "Open" and navigate to the directory where you cloned or downloaded the project.
+3. After the project opens, wait for IntelliJ to index the files and set up the project.
+4. Find the main class with the `public static void main(String[] args)` method.
+5. Right-click on the file and select 'Run 'EasyshopApplication.main()'' to start the application.
+6. Have to download the website in a separate folder, and open up index.html
+7. While running, you can configure 
+
+## Technologies Used
+
+- Java SDK 17
+- IntelliJ IDEA
+- MySQL Database
+- Insomnia
+- Spring Boot
+
+## Demo(Left to right, top to bottom)
+<img width="260" height="206" alt="image" src="https://github.com/user-attachments/assets/5e92325c-ce9d-4b9b-ae0c-5edf0c734e99" />
+<img width="237" height="256" alt="image" src="https://github.com/user-attachments/assets/80189f86-3240-46a7-8ea1-5ab9deccb3e8" />
+<img width="547" height="145" alt="image" src="https://github.com/user-attachments/assets/e39ce52e-bac7-44aa-8b53-03a83f00ff13" />
+<img width="410" height="247" alt="image" src="https://github.com/user-attachments/assets/7925cf5f-2421-4ed6-8b50-a6ad43372663" />
+<img width="353" height="222" alt="image" src="https://github.com/user-attachments/assets/21ea0e7a-0239-4fad-a0c6-50ac19261a61" />
+
+
+
+## Interesting Part of my Code:
+- A couple of parts:
+  - Looping through a map, grabbing its product and id through the key and value
+  - Using DUPLICATE KEY in my sql query, allowing no duplicates allowed if existed already and instead incrementing quantity by 1
+  - 
+
+## Future versions:
+- Some features I would like to improve on in the future:
+  - Being able to remove a specific quantity of products in your shopping cart, instead of clearing the whole cart
+  - Implement a search bar in the front-end so people can search their game of choice
+  - Changing the max price bar in the front-end depending on the highest priced product
+  - Having a checkout button
+
+## Contributors:
+- Roger Su

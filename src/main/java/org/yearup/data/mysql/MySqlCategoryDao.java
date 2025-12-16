@@ -35,7 +35,7 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return categoryList;
@@ -54,7 +54,7 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -80,7 +80,7 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return category;
     }
@@ -98,7 +98,7 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
             if(affectedRows == 0) throw new SQLException("Updating category failed, no rows affected.");
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -112,7 +112,7 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
             int affectedRows = preparedStatement.executeUpdate();
             if(affectedRows == 0) throw new SQLException("Deleting category failed, no rows affected.");
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
