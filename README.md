@@ -55,12 +55,10 @@ Follow these steps to get your application running within IntelliJ IDEA:
 - Insomnia
 - Spring Boot
 
-## Demo(Left to right, top to bottom)
-<img width="260" height="206" alt="image" src="https://github.com/user-attachments/assets/5e92325c-ce9d-4b9b-ae0c-5edf0c734e99" />
-<img width="237" height="256" alt="image" src="https://github.com/user-attachments/assets/80189f86-3240-46a7-8ea1-5ab9deccb3e8" />
-<img width="547" height="145" alt="image" src="https://github.com/user-attachments/assets/e39ce52e-bac7-44aa-8b53-03a83f00ff13" />
-<img width="410" height="247" alt="image" src="https://github.com/user-attachments/assets/7925cf5f-2421-4ed6-8b50-a6ad43372663" />
-<img width="353" height="222" alt="image" src="https://github.com/user-attachments/assets/21ea0e7a-0239-4fad-a0c6-50ac19261a61" />
+## Demo
+[ezgif-8996a302de041b12](https://github.com/user-attachments/assets/96897f24-0f0e-45c6-8ee0-f5a337dc58bf)
+
+
 
 
 
