@@ -67,6 +67,8 @@ Follow these steps to get your application running within IntelliJ IDEA:
   - Looping through a map, grabbing its product and id through the key and value
   - Using DUPLICATE KEY in my sql query, allowing no duplicates allowed if existed already and instead incrementing quantity by 1
   - Implementing a service that deals with 4 DAOs corresponding with the user's order.
+  - Implementing two catches in my controller methods to display the correct HTTP status.
+
 
 ## Future versions:
 - Some features I would like to improve on in the future:
