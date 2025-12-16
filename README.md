@@ -66,7 +66,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 - A couple of parts:
   - Looping through a map, grabbing its product and id through the key and value
   - Using DUPLICATE KEY in my sql query, allowing no duplicates allowed if existed already and instead incrementing quantity by 1
-  - 
+  - Implementing a service that deals with 4 DAOs corresponding with the user's order.
 
 ## Future versions:
 - Some features I would like to improve on in the future:
@@ -74,6 +74,11 @@ Follow these steps to get your application running within IntelliJ IDEA:
   - Implement a search bar in the front-end so people can search their game of choice
   - Changing the max price bar in the front-end depending on the highest priced product
   - Having a checkout button
+
+## Special thanks to:
+- Raymond
+- Tamir
+- Stephen
 
 ## Contributors:
 - Roger Su
