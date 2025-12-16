@@ -29,12 +29,17 @@ public class OrdersController {
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("isAuthenticated()")
     public Order checkout(Principal principal){
-        User user = userDao.getByUserName(principal.getName());
-        if(user == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        int userId = user.getId();
-        if(orderService.checkout(userId) != null){
-            return orderService.checkout(userId);
+        try {
+            User user = userDao.getByUserName(principal.getName());
+            if (user == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            int userId = user.getId();
+            Order order = orderService.checkout(userId);
+            if (order == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Checkout failed");
+            return order;
+        } catch (ResponseStatusException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Server not connected..");
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 }
