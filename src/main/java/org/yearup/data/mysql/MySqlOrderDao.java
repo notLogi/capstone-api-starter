@@ -35,7 +35,7 @@ public class MySqlOrderDao extends MySqlDaoBase implements OrderDao {
             if(affectedRows == 0) throw new SQLException("Creating category failed, no rows affected.");
             try(ResultSet resultSet = preparedStatement.getGeneratedKeys()){
                 if(resultSet.next()){
-                    order.setOrderId(1);
+                    order.setOrderId(resultSet.getInt(1));
                 }
             }
             return order;

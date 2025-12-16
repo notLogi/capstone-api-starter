@@ -1,6 +1,5 @@
 package org.yearup.data.mysql;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.yearup.data.OrderLineItemDao;
 import org.yearup.models.OrderLineItem;
@@ -34,7 +33,7 @@ public class MySqlOrderLineItemDao extends MySqlDaoBase implements OrderLineItem
             if(affectedRows == 0) throw new SQLException("Creating category failed, no rows affected.");
             try(ResultSet resultSet = preparedStatement.getGeneratedKeys()){
                 if(resultSet.next()){
-                    orderLineItem.setOrderLineItemId(1);
+                    orderLineItem.setOrderLineItemId(resultSet.getInt(1));
                 }
             }
             return orderLineItem;

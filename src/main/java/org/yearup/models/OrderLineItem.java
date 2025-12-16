@@ -3,12 +3,14 @@ package org.yearup.models;
 import java.math.BigDecimal;
 
 public class OrderLineItem {
-   private int orderLineItemId;
-   private int orderId;
-   private int productId;
-   private BigDecimal salesPrice;
-   private int quantity;
-   private BigDecimal discount;
+    private int orderLineItemId;
+    private int orderId;
+    private int productId;
+    private BigDecimal salesPrice;
+    private int quantity;
+    private BigDecimal discount;
+
+    public OrderLineItem(){}
 
     public OrderLineItem(int orderLineItemId, int orderId, int productId, BigDecimal salesPrice, int quantity, BigDecimal discount) {
         this.orderLineItemId = orderLineItemId;

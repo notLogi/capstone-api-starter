@@ -108,4 +108,5 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
             e.printStackTrace();
         }
     }
+
 }
