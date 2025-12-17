@@ -25,8 +25,7 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
 
     /**
      * Retrieves all categories from the database.
-     *
-     * @return a list of all categories; returns an empty list if none exist
+     * @return a list of all categories
      * @throws RuntimeException if a database access error occurs
      */
     @Override
@@ -52,9 +51,8 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
 
     /**
      * Retrieves a category by its ID.
-     *
      * @param categoryId the ID of the category to retrieve
-     * @return the category if found.
+     * @return the category if found
      * @throws RuntimeException if a database access error occurs
      */
     @Override
@@ -77,9 +75,8 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
 
     /**
      * Creates a category in the database based on the category given.
-     *
      * @param category the Category to retrieve
-     * @return the category if found; return null if no category exists with the given ID
+     * @return the category if created; return null if no category exists with the given ID
      * @throws RuntimeException if a database access error occurs
      */
     @Override
@@ -109,9 +106,7 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
     }
     /**
      * Updates a new category in the database.
-     *
-     * @param category the category to create
-     * @return the created category with its generated ID populated
+     * @param category the category to UPDATE
      * @throws RuntimeException if the category cannot be created
      */
 
@@ -131,6 +126,12 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Delets a category in the database.
+     * @param categoryId to delete the category according to the id
+     * @throws RuntimeException if the category cannot be created
+     */
 
     @Override
     public void delete(int categoryId)

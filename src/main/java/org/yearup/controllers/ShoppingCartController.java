@@ -9,7 +9,7 @@ import org.yearup.data.ProductDao;
 import org.yearup.data.ShoppingCartDao;
 import org.yearup.data.UserDao;
 import org.yearup.models.ShoppingCart;
-import org.yearup.models.UpdateQuantity;
+import org.yearup.models.ShoppingCartItem;
 import org.yearup.models.User;
 
 import java.security.Principal;
@@ -85,13 +85,13 @@ public class ShoppingCartController
     // the BODY should be a ShoppingCartItem - quantity is the only value that will be updated
     @PutMapping("products/{id}")
     @PreAuthorize("isAuthenticated()")
-    public void updateCart(Principal principal, @PathVariable int id, @RequestBody UpdateQuantity quantity){
+    public void updateCart(Principal principal, @PathVariable int id, @RequestBody ShoppingCartItem shoppingCartItem){
         try{
             String userName = principal.getName();
             User user = userDao.getByUserName(userName);
             if(user == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.");
             int userId = user.getId();
-            shoppingCartDao.updateCart(userId, id, quantity.getQuantity());
+            shoppingCartDao.updateCart(userId, id, shoppingCartItem.getQuantity());
         }
         catch (ResponseStatusException e) {
             throw e;

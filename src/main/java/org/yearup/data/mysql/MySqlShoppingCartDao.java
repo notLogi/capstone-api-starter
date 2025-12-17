@@ -20,7 +20,12 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
     public MySqlShoppingCartDao(DataSource dataSource){
         super(dataSource);
     }
-
+    /**
+     * Gets a shopping cart in the database based on the userID.
+     * @param userId, to match user ID with the database
+     * @return the shopping cart that corresponds
+     * @throws RuntimeException if the category cannot be created
+     */
     @Override
     public ShoppingCart getByUserId(int userId){
         String sql = """
@@ -57,6 +62,13 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
         return cart;
     }
 
+    /**
+     * Creates a new shopping cart in the database.
+     * @param userId, to match user ID with the database
+     * @param productId, to match product ID with the database
+     * @return the created ShoppingCart with its generated ID populated
+     * @throws RuntimeException if the category cannot be created
+     */
     @Override
     public ShoppingCart addProduct(int userId, int productId){
         String sql = """
@@ -75,6 +87,13 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
         return getByUserId(userId);
     }
 
+    /**
+     * Updates the quantity a product in the shopping cart in the database.
+     * @param userId, to match user ID with the database
+     * @param productId, to match product ID with the database
+     * @param quantity, the number of products wanted.
+     * @throws RuntimeException if the category cannot be created
+     */
     @Override
     public void updateCart(int userId, int productId, int quantity){
         String sql = """
@@ -89,10 +108,15 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
             if(rows == 0) throw new SQLException("Update failed, no rows affected!");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
+    /**
+     * Deletes new shopping cart in the database.
+     * @param userId, to match user ID with the database
+     * @throws RuntimeException if the category cannot be created
+     */
     @Override
     public void deleteCart(int userId){
         String sql = """
@@ -105,7 +129,7 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
             if(rows == 0) System.out.println("No rows have been deleted");
             else System.out.println("Cart has been cleared!");
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

@@ -16,6 +16,12 @@ public class MySqlProfileDao extends MySqlDaoBase implements ProfileDao
         super(dataSource);
     }
 
+    /**
+     * Creates a profile in the database
+     * @param profile, to create a profile in the database
+     * @return profile,  to show that the profile has been inserted in the database.
+     * @throws RuntimeException if the category cannot be created
+     */
     @Override
     public Profile create(Profile profile)
     {
@@ -45,6 +51,12 @@ public class MySqlProfileDao extends MySqlDaoBase implements ProfileDao
         }
     }
 
+    /**
+     * Updates the profile currently stored in the database
+     * @param userId, to match user ID with the database
+     * @param profile, to update with correct info
+     * @throws RuntimeException if the category cannot be created
+     */
     @Override
     public void update(int userId, Profile profile){
         String sql = """
@@ -71,6 +83,12 @@ public class MySqlProfileDao extends MySqlDaoBase implements ProfileDao
         }
     }
 
+    /**
+     * Grabs the user information from profile
+     * @param id, grabs the userId
+     * @return profile, to get the profile requested
+     * @throws RuntimeException if the category cannot be created
+     */
     @Override
     public Profile getByUserId(int id){
         String sql = "SELECT * FROM profiles WHERE user_id = ?";
