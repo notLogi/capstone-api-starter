@@ -44,8 +44,8 @@ Follow these steps to get your application running within IntelliJ IDEA:
 3. After the project opens, wait for IntelliJ to index the files and set up the project.
 4. Find the main class with the `public static void main(String[] args)` method.
 5. Right-click on the file and select 'Run 'EasyshopApplication.main()'' to start the application.
-6. Have to download the website in a separate folder, and open up index.html
-7. While running, you can configure 
+6. Have to download the website in a separate folder, and open up index.html on IntelliJ.
+7. While running, you have to make sure the API is running, and after that, you can enter data and search products up persistently.
 
 ## Technologies Used
 
@@ -56,17 +56,13 @@ Follow these steps to get your application running within IntelliJ IDEA:
 - Spring Boot
 
 ## Demo
-![https://github.com/user-attachments/assets/96897f24-0f0e-45c6-8ee0-f5a337dc58bf](https://s8.ezgif.com/tmp/ezgif-8996a302de041b12.gif)
-
-
-
-
+![ezgif-8996a302de041b12](https://github.com/user-attachments/assets/596fe458-d778-4c4e-85a4-b22160344690)
 
 ## Interesting Part of my Code:
 - A couple of parts:
   - Looping through a map, grabbing its product and id through the key and value
-  - Using DUPLICATE KEY in my sql query, allowing no duplicates allowed if existed already and instead incrementing quantity by 1
-  - Implementing a service that deals with 4 DAOs corresponding with the user's order.
+  - Using DUPLICATE KEY in my sql query, where no duplicates are allowed if existed already and instead incrementing quantity by 1
+  - Implementing a service that deals with 4 DAOs corresponding with the user's order allowing data to be store persistantly in the database.
   - Implementing two catches in my controller methods to display the correct HTTP status.
 
 
