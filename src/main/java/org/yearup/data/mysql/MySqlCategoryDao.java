@@ -104,12 +104,12 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
         }
         return category;
     }
+
     /**
      * Updates a new category in the database.
      * @param category the category to UPDATE
      * @throws RuntimeException if the category cannot be created
      */
-
     @Override
     public void update(int categoryId, Category category)
     {
@@ -132,7 +132,6 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
      * @param categoryId to delete the category according to the id
      * @throws RuntimeException if the category cannot be created
      */
-
     @Override
     public void delete(int categoryId)
     {
