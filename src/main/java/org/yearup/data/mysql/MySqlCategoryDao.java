@@ -12,6 +12,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handles all CRUD operations for {@link Category} objects using JDBC and a MySQL database.
+ */
 @Component
 public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
 {
@@ -20,6 +23,12 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
         super(dataSource);
     }
 
+    /**
+     * Retrieves all categories from the database.
+     *
+     * @return a list of all categories; returns an empty list if none exist
+     * @throws RuntimeException if a database access error occurs
+     */
     @Override
     public List<Category> getAllCategories()
     {
@@ -41,6 +50,13 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
         return categoryList;
     }
 
+    /**
+     * Retrieves a category by its ID.
+     *
+     * @param categoryId the ID of the category to retrieve
+     * @return the category if found.
+     * @throws RuntimeException if a database access error occurs
+     */
     @Override
     public Category getById(int categoryId)
     {
@@ -59,6 +75,13 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
         return null;
     }
 
+    /**
+     * Creates a category in the database based on the category given.
+     *
+     * @param category the Category to retrieve
+     * @return the category if found; return null if no category exists with the given ID
+     * @throws RuntimeException if a database access error occurs
+     */
     @Override
     public Category create(Category category)
     {
@@ -84,6 +107,13 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
         }
         return category;
     }
+    /**
+     * Updates a new category in the database.
+     *
+     * @param category the category to create
+     * @return the created category with its generated ID populated
+     * @throws RuntimeException if the category cannot be created
+     */
 
     @Override
     public void update(int categoryId, Category category)

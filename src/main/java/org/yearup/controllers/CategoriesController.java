@@ -48,9 +48,16 @@ public class CategoriesController
     @GetMapping("{id}")
     public Category getById(@PathVariable int id)
     {
-        var category = categoryDao.getById(id);
-        if(category == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found");
-        return category;
+        try {
+            var category = categoryDao.getById(id);
+            if (category == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found");
+            return category;
+        } catch (ResponseStatusException e) {
+            throw e;
+        }
+        catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
+        }
     }
 
 
@@ -61,6 +68,7 @@ public class CategoriesController
     {
         // get a list of product by categoryId
         try {
+            List<Product> productList = productDao.search(categoryId, null, null, null);
             return productDao.search(categoryId, null, null, null);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
