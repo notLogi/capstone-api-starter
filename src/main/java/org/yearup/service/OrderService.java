@@ -29,6 +29,13 @@ public class OrderService{
         this.profileDao = profileDao;
     }
 
+    /**
+     * Retrieves all the items in the shopping cart, and put them in the order_line_item table,
+     * and tracking the time of the order and profile details from the database.
+     * @param userId to grab the order according to the user's ID
+     * @return the order to confirm it's been stored in the database.
+     * @throws RuntimeException if a database access error occurs
+     */
     public Order checkout(int userId){
         Order order = new Order();
         makeOrder(userId, order);
