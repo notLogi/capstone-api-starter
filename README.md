@@ -44,8 +44,8 @@ Follow these steps to get your application running within IntelliJ IDEA:
 3. After the project opens, wait for IntelliJ to index the files and set up the project.
 4. Find the main class with the `public static void main(String[] args)` method.
 5. Right-click on the file and select 'Run 'EasyshopApplication.main()'' to start the application.
-6. Have to download the website in a separate folder, and open up index.html
-7. While running, you can configure 
+6. Have to download the website in a separate folder, and open up index.html on IntelliJ.
+7. While running, you have to make sure the API is running, and after that, you can enter data and search products up persistently.
 
 ## Technologies Used
 
@@ -57,11 +57,6 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Demo
 ![ezgif-8996a302de041b12](https://github.com/user-attachments/assets/596fe458-d778-4c4e-85a4-b22160344690)
-
-
-
-
-
 
 ## Interesting Part of my Code:
 - A couple of parts:
