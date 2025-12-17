@@ -56,7 +56,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 - Spring Boot
 
 ## Demo
-!  ![ezgif-8996a302de041b12](https://github.com/user-attachments/assets/596fe458-d778-4c4e-85a4-b22160344690)
+![ezgif-8996a302de041b12](https://github.com/user-attachments/assets/596fe458-d778-4c4e-85a4-b22160344690)
 
 
 
