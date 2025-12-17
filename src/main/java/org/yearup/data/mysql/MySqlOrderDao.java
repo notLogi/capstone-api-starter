@@ -32,7 +32,7 @@ public class MySqlOrderDao extends MySqlDaoBase implements OrderDao {
         try(Connection connection = getConnection();
           PreparedStatement preparedStatement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)){
             preparedStatement.setInt(1, order.getUserId());
-            preparedStatement.setDate(2, java.sql.Date.valueOf(order.getDate()));
+            preparedStatement.setTimestamp(2, java.sql.Timestamp.valueOf(order.getDate()));
             preparedStatement.setString(3, order.getAddress());
             preparedStatement.setString(4, order.getCity());
             preparedStatement.setString(5, order.getState());

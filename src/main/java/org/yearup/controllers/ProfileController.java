@@ -43,12 +43,13 @@ public class ProfileController {
 
     @PutMapping
     @PreAuthorize(("isAuthenticated()"))
-    public void updateProfile(Principal principal, @RequestBody Profile profile){
+    public Profile updateProfile(Principal principal, @RequestBody Profile profile){
         try{
             User user = userDao.getByUserName(principal.getName());
             if(user == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
             int userId = user.getId();
             profileDao.update(userId, profile);
+            return profile;
         } catch (ResponseStatusException e) {
             throw e;
         } catch (Exception e) {

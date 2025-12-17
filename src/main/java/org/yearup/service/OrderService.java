@@ -11,7 +11,7 @@ import org.yearup.data.ShoppingCartDao;
 import org.yearup.models.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @Component
@@ -65,13 +65,13 @@ public class OrderService{
         if (profile == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Profile not found");
         }
-        LocalDate date = LocalDate.now();
+        LocalDateTime dateTime = LocalDateTime.now();
         String address = profile.getAddress();
         String state = profile.getState();
         String city = profile.getCity();
         String zip = profile.getZip();
         order.setUserId(userId);
-        order.setDate(date);
+        order.setDate(dateTime);
         order.setAddress(address);
         order.setState(state);
         order.setCity(city);
