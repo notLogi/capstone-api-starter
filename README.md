@@ -64,6 +64,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
   - Using DUPLICATE KEY in my sql query, where no duplicates are allowed if existed already and instead incrementing quantity by 1
   - Implementing a service that deals with 4 DAOs corresponding with the user's order allowing data to be store persistantly in the database.
   - Implementing two catches in my controller methods to display the correct HTTP status.
+  - Converting a LocalDateTime to SQL DateTime by parsing it using Timestamp.
 
 
 ## Future versions:
