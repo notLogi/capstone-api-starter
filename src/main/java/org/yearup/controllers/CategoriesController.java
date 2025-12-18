@@ -68,7 +68,6 @@ public class CategoriesController
     {
         // get a list of product by categoryId
         try {
-            List<Product> productList = productDao.search(categoryId, null, null, null);
             return productDao.search(categoryId, null, null, null);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
