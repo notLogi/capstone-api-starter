@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.yearup.models.Category;
 import org.yearup.models.Product;
 import org.yearup.data.ProductDao;
 
@@ -32,11 +33,12 @@ public class ProductsController
                                 @RequestParam(name="subCategory", required = false) String subCategory
                                 )
     {
-        try
-        {
+        try {
             List<Product> productList = productDao.search(categoryId, minPrice, maxPrice, subCategory);
             if(productList == null || productList.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             return productList;
+        } catch (ResponseStatusException e) {
+            throw e;
         }
         catch(Exception ex)
         {
@@ -48,14 +50,13 @@ public class ProductsController
     @PreAuthorize("permitAll()")
     public Product getById(@PathVariable int id )
     {
-        try
-        {
+        try {
             var product = productDao.getById(id);
             if(product == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             return product;
         }
-        catch(ResponseStatusException ex){
-            throw ex;
+        catch(ResponseStatusException e){
+            throw e;
         }
         catch(Exception ex)
         {
@@ -67,8 +68,7 @@ public class ProductsController
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Product addProduct(@RequestBody Product product)
     {
-        try
-        {
+        try {
             Product newProduct = productDao.create(product);
             if(newProduct == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             return productDao.create(product);
@@ -85,9 +85,11 @@ public class ProductsController
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void updateProduct(@PathVariable int id, @RequestBody Product product)
     {
-        try
-        {
+        try {
+            if (product == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             productDao.update(id, product);
+        } catch (ResponseStatusException e) {
+            throw e;
         }
         catch(Exception ex)
         {
@@ -99,8 +101,7 @@ public class ProductsController
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteProduct(@PathVariable int id)
     {
-        try
-        {
+        try {
             var product = productDao.getById(id);
             if(product == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             productDao.delete(id);
