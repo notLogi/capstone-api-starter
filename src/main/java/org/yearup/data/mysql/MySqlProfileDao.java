@@ -106,6 +106,11 @@ public class MySqlProfileDao extends MySqlDaoBase implements ProfileDao
         return null;
     }
 
+    /**
+     * Grabs the user information from profile and uses the setters from the Profile type
+     * @param row, grabs the row of data in SQL
+     * @return profile, as values are set and returned
+     */
     private Profile mapRow(ResultSet row) throws SQLException
     {
         int userId = row.getInt("user_id");

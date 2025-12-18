@@ -34,7 +34,9 @@ public class ProductsController
     {
         try
         {
-            return productDao.search(categoryId, minPrice, maxPrice, subCategory);
+            List<Product> productList = productDao.search(categoryId, minPrice, maxPrice, subCategory);
+            if(productList == null || productList.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            return productList;
         }
         catch(Exception ex)
         {
@@ -49,10 +51,7 @@ public class ProductsController
         try
         {
             var product = productDao.getById(id);
-
-            if(product == null)
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-
+            if(product == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             return product;
         }
         catch(ResponseStatusException ex){
@@ -70,10 +69,14 @@ public class ProductsController
     {
         try
         {
+            Product newProduct = productDao.create(product);
+            if(newProduct == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             return productDao.create(product);
         }
-        catch(Exception ex)
-        {
+        catch(ResponseStatusException e){
+            throw e;
+        }
+        catch(Exception ex) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
         }
     }
@@ -99,11 +102,10 @@ public class ProductsController
         try
         {
             var product = productDao.getById(id);
-
-            if(product == null)
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-
+            if(product == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             productDao.delete(id);
+        } catch (ResponseStatusException e) {
+            throw e;
         }
         catch(Exception ex)
         {

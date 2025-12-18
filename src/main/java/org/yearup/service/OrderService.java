@@ -60,6 +60,11 @@ public class OrderService{
         return order;
     }
 
+    /**
+     * A helper method that uses Order setters to set values gotten from instantiating a Profile type.
+     * @param userId to grab the order according to the user's ID
+     * @param order to set values into the attributes
+     */
     private void makeOrder(int userId, Order order){
         Profile profile = profileDao.getByUserId(userId);
         if (profile == null) {
