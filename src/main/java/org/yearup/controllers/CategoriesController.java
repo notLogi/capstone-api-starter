@@ -120,8 +120,11 @@ public class CategoriesController
     public void updateCategory(@PathVariable int id, @RequestBody Category category)
     {
         try{
+            if (category == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             categoryDao.update(id, category);
-        } catch (Exception e) {
+        } catch (ResponseStatusException e) {
+            throw e;
+        }catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
         }
     }
