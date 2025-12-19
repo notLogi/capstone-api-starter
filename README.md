@@ -62,7 +62,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 - A couple of parts:
   - Looping through a map, grabbing its product and id through the key and value
   - Using DUPLICATE KEY in my sql query, where no duplicates are allowed if existed already and instead incrementing quantity by 1
-  - Implementing a service that deals with 4 DAOs corresponding with the user's order allowing data to be store persistantly in the database.
+  - Implementing a service that deals with 4 DAOs corresponding with the user's order allowing data to be store persistently in the database.
   - Implementing two catches in my controller methods to display the correct HTTP status.
   - Converting a LocalDateTime to SQL DateTime by parsing it using Timestamp.
 
