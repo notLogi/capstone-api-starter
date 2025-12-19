@@ -125,9 +125,7 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
         try(Connection connection = getConnection();
           PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setInt(1, userId);
-            int rows = preparedStatement.executeUpdate();
-            if(rows == 0) System.out.println("No rows have been deleted");
-            else System.out.println("Cart has been cleared!");
+            preparedStatement.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
